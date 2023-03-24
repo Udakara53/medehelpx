@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="loginContext" prefHeight="779.0" prefWidth="1236.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.developersstack.controller.LoginFormController">
+<AnchorPane fx:id="loginContext" prefHeight="779.0" prefWidth="1236.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.developersstack.medehelpx.controller.LoginFormController">
    <children>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="742.0" prefWidth="690.0" style="-fx-background-color: white;">
          <children>

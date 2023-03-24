@@ -1,7 +1,7 @@
-package com.developersstack.db;
+package com.developersstack.medehelpx.db;
 
-import com.developersstack.entity.User;
-import com.developersstack.enums.AccountType;
+import com.developersstack.medehelpx.entity.User;
+import com.developersstack.medehelpx.enums.AccountType;
 
 import java.util.ArrayList;
 

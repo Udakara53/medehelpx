@@ -1,8 +1,8 @@
-package com.developersstack.controller;
+package com.developersstack.medehelpx.controller;
 
-import com.developersstack.db.Database;
-import com.developersstack.entity.User;
-import com.developersstack.enums.AccountType;
+import com.developersstack.medehelpx.db.Database;
+import com.developersstack.medehelpx.entity.User;
+import com.developersstack.medehelpx.enums.AccountType;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
@@ -13,7 +13,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.Optional;
 

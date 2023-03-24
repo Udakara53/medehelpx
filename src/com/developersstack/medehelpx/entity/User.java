@@ -1,6 +1,6 @@
-package com.developersstack.entity;
+package com.developersstack.medehelpx.entity;
 
-import com.developersstack.enums.AccountType;
+import com.developersstack.medehelpx.enums.AccountType;
 
 public class User {
     private String firstName;

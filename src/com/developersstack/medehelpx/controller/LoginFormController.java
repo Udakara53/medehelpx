@@ -1,8 +1,9 @@
-package com.developersstack.controller;
+package com.developersstack.medehelpx.controller;
 
-import com.developersstack.db.Database;
-import com.developersstack.entity.User;
-import com.developersstack.enums.AccountType;
+import com.developersstack.medehelpx.db.Database;
+import com.developersstack.medehelpx.entity.User;
+import com.developersstack.medehelpx.enums.AccountType;
+import com.developersstack.medehelpx.util.Cookie;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
@@ -13,7 +14,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
 
@@ -24,7 +24,7 @@ public class LoginFormController {
     public ToggleGroup accountType;
     public AnchorPane loginContext;
 
-    public void signInOnAction(ActionEvent actionEvent) {
+    public void signInOnAction(ActionEvent actionEvent) throws IOException {
         String email =txtEmail.getText().toLowerCase().trim();
         String password = txtPassword.getText().trim();
         AccountType accountType = AccountType.PATIENT;
@@ -38,6 +38,10 @@ public class LoginFormController {
                 if (dto.getPassword().equals(password)){
                     if (dto.getAccountType().equals(accountType)) {
                         new Alert(Alert.AlertType.CONFIRMATION,"LoginSuccess!").show();
+
+                        Cookie.selectedUser = dto;
+                        setUi("DoctorDashboardForm");
+
                         return;
                     }else{
                         new Alert(Alert.AlertType.WARNING,String.format("We can't find Your %s Account ",accountType)).show();
@@ -53,8 +57,11 @@ public class LoginFormController {
     }
 
     public void createAnAccountOnAction(ActionEvent actionEvent) throws IOException {
+        setUi("SignUpForm");
+    }
+    private void setUi(String location) throws IOException {
         Stage stage = (Stage) loginContext.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/SignUpForm.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
         stage.centerOnScreen();
         stage.show();
     }
