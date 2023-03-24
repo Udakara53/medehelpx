@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="779.0" prefWidth="1236.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.developersstack.controller.LoginFormController">
+<AnchorPane fx:id="loginContext" prefHeight="779.0" prefWidth="1236.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.developersstack.controller.LoginFormController">
    <children>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="742.0" prefWidth="690.0" style="-fx-background-color: white;">
          <children>
@@ -55,11 +56,17 @@
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <JFXButton buttonType="RAISED" layoutX="77.0" layoutY="573.0" onAction="#createAnAccountOnAction" prefHeight="58.0" prefWidth="491.0" style="-fx-background-color: #2a1550;" text="Create an account" textFill="#efeef1">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <Label layoutX="303.0" layoutY="507.0" text="OR" textFill="#da1717">
                <font>
