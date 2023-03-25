@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="signupContext" prefHeight="779.0" prefWidth="1236.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.developersstack.medehelpx.controller.SignUpFormController">
+   <children>
+      <AnchorPane layoutX="545.0" layoutY="16.0" prefHeight="790.0" prefWidth="687.0">
+         <children>
+            <JFXTextField fx:id="txtFirstName" labelFloat="true" layoutX="77.0" layoutY="111.0" prefHeight="39.0" prefWidth="270.0" promptText="First Name">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="75.0" layoutY="22.0" text="Register here" textFill="#cd0d0d">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Separator layoutX="75.0" layoutY="71.0" prefHeight="10.0" prefWidth="601.0" />
+            <JFXTextField fx:id="txtLastName" labelFloat="true" layoutX="405.0" layoutY="111.0" prefHeight="39.0" prefWidth="270.0" promptText="Last Name">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtEmail" labelFloat="true" layoutX="83.0" layoutY="194.0" prefHeight="39.0" prefWidth="553.0" promptText="Enter email here">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="txtPassword" labelFloat="true" layoutX="83.0" layoutY="281.0" prefHeight="39.0" prefWidth="553.0" promptText="Password here">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXRadioButton fx:id="rBtnDoctor" layoutX="83.0" layoutY="368.0" selected="true" text="Doctor">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="accountType1" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton layoutX="198.0" layoutY="368.0" text="Patient" toggleGroup="$accountType1">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXButton buttonType="RAISED" layoutX="99.0" layoutY="463.0" onAction="#signupOnAction" prefHeight="58.0" prefWidth="521.0" style="-fx-background-color: #271ed3;" text="Sign Up" textFill="#e1e1ea">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="95.0" layoutY="626.0" onAction="#alreadyHaveAnAccountOnAction" prefHeight="58.0" prefWidth="521.0" style="-fx-background-color: #2a1550;" text="Already have an account" textFill="#efeef1">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Label layoutX="340.0" layoutY="553.0" text="OR" textFill="#da1717">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="742.0" text="From: Developer Stack" />
+            <Label layoutX="590.0" layoutY="742.0" text="Version : 1.0.0" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="790.0" fitWidth="521.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/pexels-photo-7195186.jpeg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
