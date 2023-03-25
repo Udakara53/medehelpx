@@ -1,5 +1,4 @@
 package com.developersstack.medehelpx.controller;
-
 import com.developersstack.medehelpx.db.Database;
 import com.developersstack.medehelpx.entity.User;
 import com.developersstack.medehelpx.enums.AccountType;
@@ -12,8 +11,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class SignUpFormController {
@@ -25,18 +27,37 @@ public class SignUpFormController {
     public JFXRadioButton rBtnDoctor;
 
     public void signupOnAction(ActionEvent actionEvent) throws IOException {
-        String firstName = txtFirstName.getText().trim();
-        String lastName = txtLastName.getText().trim();
-        String email = txtEmail.getText().trim().toLowerCase();
-        String password = txtPassword.getText().trim();
-        AccountType accountType = rBtnDoctor.isSelected()?AccountType.DOCTOR:AccountType.PATIENT;
-        if (isExistsEmail(email)){
-            new Alert(Alert.AlertType.WARNING,"email address already exists!").show();
-            return;
+        User user = new User(txtFirstName.getText().trim(),txtLastName.getText().trim(),
+                txtEmail.getText().trim().toLowerCase(),txtPassword.getText().trim(),
+                rBtnDoctor.isSelected()?AccountType.DOCTOR:AccountType.PATIENT);
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/medehelpx",
+                    "root",
+                    "1234"
+            );
+            String sql = "INSERT INTO user VALUES (?,?,?,?,?,?)";
+            PreparedStatement pstm = connection.prepareStatement(sql);
+            pstm.setInt(1,1001);
+            pstm.setString(2, user.getFirstName());
+            pstm.setString(3, user.getLastName());
+            pstm.setString(4, user.getEmail());
+            pstm.setString(5, user.getPassword());
+            pstm.setString(6,user.getAccountType().name());
+
+            int rowCount = pstm.executeUpdate();
+            if (rowCount>0){
+                new Alert(Alert.AlertType.CONFIRMATION,"Saved.!").show();
+            }else{
+                new Alert(Alert.AlertType.WARNING,"Try again.!").show();
+            }
+
+        }catch (ClassNotFoundException | SQLException e){
+            e.printStackTrace();
         }
-        Database.userTable.add(new User(firstName,lastName,email,password,accountType));
-        new Alert(Alert.AlertType.CONFIRMATION,"Sign up success!").show();
-        setUi();
+
     }
     private boolean isExistsEmail(String email){
         Optional<User> findUser = Database.userTable.stream().filter(e -> e.getEmail().equals(email)).findFirst();
