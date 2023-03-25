@@ -2,6 +2,7 @@ package com.developersstack.medehelpx.controller;
 import com.developersstack.medehelpx.db.Database;
 import com.developersstack.medehelpx.entity.User;
 import com.developersstack.medehelpx.enums.AccountType;
+import com.developersstack.medehelpx.util.PasswordConfig;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
@@ -28,7 +29,7 @@ public class SignUpFormController {
 
     public void signupOnAction(ActionEvent actionEvent) throws IOException {
         User user = new User(txtFirstName.getText().trim(),txtLastName.getText().trim(),
-                txtEmail.getText().trim().toLowerCase(),txtPassword.getText().trim(),
+                txtEmail.getText().trim().toLowerCase(),new PasswordConfig().encrypt(txtPassword.getText().trim()),
                 rBtnDoctor.isSelected()?AccountType.DOCTOR:AccountType.PATIENT);
 
         try{
@@ -50,6 +51,7 @@ public class SignUpFormController {
             int rowCount = pstm.executeUpdate();
             if (rowCount>0){
                 new Alert(Alert.AlertType.CONFIRMATION,"Saved.!").show();
+                setUi();
             }else{
                 new Alert(Alert.AlertType.WARNING,"Try again.!").show();
             }
