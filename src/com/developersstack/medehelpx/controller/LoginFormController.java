@@ -31,7 +31,7 @@ public class LoginFormController {
         String password = txtPassword.getText().trim();
         AccountType accountType = rBtnDoctor.isSelected()?AccountType.DOCTOR: AccountType.PATIENT;
         try{
-            ResultSet rst = CrudUtil.executeQuery("SELECT*FROM user WHERE email=? AND account_type=?",
+            ResultSet rst = CrudUtil.execute("SELECT*FROM user WHERE email=? AND account_type=?",
                     email,accountType.name());
             if (rst.next()){
                 if (new PasswordConfig().decrypt(password, rst.getString("password"))){
