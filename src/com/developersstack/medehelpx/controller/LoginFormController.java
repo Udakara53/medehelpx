@@ -4,6 +4,7 @@ import com.developersstack.medehelpx.db.Database;
 import com.developersstack.medehelpx.entity.User;
 import com.developersstack.medehelpx.enums.AccountType;
 import com.developersstack.medehelpx.util.Cookie;
+import com.developersstack.medehelpx.util.CrudUtil;
 import com.developersstack.medehelpx.util.PasswordConfig;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
@@ -30,11 +31,8 @@ public class LoginFormController {
         String password = txtPassword.getText().trim();
         AccountType accountType = rBtnDoctor.isSelected()?AccountType.DOCTOR: AccountType.PATIENT;
         try{
-            String sql = "SELECT*FROM user WHERE email=? AND account_type=?";
-            PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql);
-            pstm.setString(1, email);
-            pstm.setString(2, accountType.name());
-            ResultSet rst = pstm.executeQuery();
+            ResultSet rst = CrudUtil.executeQuery("SELECT*FROM user WHERE email=? AND account_type=?",
+                    email,accountType.name());
             if (rst.next()){
                 if (new PasswordConfig().decrypt(password, rst.getString("password"))){
                     if (accountType.equals(AccountType.DOCTOR)){
