@@ -32,7 +32,7 @@ public class Database {
         try{
             patientTable.add(new Patient(
                     "2002", "Oshara", "Irundi", new Date(),
-                    GenderType.FE_MALE, "raagama","osh@gmail.com"
+                    GenderType.FE_MALE, "raagama","erathna@gmail.com"
             ));
             patientTable.add(new Patient(
                     "98123", "Rashinthi", "Era", new SimpleDateFormat("yyyy-MM-dd").parse("1998-10-12"),
@@ -40,15 +40,15 @@ public class Database {
             ));
             patientTable.add(new Patient(
                     "961", "Shan", "Wijesinghe", new SimpleDateFormat("yyyy-MM-dd").parse("2008-10-12"),
-                    GenderType.FE_MALE, "pibura","wij@gmail.com"
+                    GenderType.MALE, "pibura","wij@gmail.com"
             ));
             patientTable.add(new Patient(
                     "951", "Dilan", "Eranga", new SimpleDateFormat("yyyy-MM-dd").parse("2018-10-12"),
-                    GenderType.FE_MALE, "abilipitiya","dil@gmail.com"
+                    GenderType.MALE, "abilipitiya","dil@gmail.com"
             ));
             patientTable.add(new Patient(
                     "90", "Dusantha", "sangeeth", new Date(),
-                    GenderType.FE_MALE, "nawalapitiya","dus@gmail.com"
+                    GenderType.MALE, "nawalapitiya","dus@gmail.com"
             ));
         }catch (Exception e){
             e.printStackTrace();
