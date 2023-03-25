@@ -1,9 +1,5 @@
 package com.developersstack.medehelpx.controller;
-import com.developersstack.medehelpx.db.DBConnection;
-import com.developersstack.medehelpx.db.Database;
-import com.developersstack.medehelpx.entity.User;
 import com.developersstack.medehelpx.enums.AccountType;
-import com.developersstack.medehelpx.util.Cookie;
 import com.developersstack.medehelpx.util.CrudUtil;
 import com.developersstack.medehelpx.util.PasswordConfig;
 import com.jfoenix.controls.JFXPasswordField;

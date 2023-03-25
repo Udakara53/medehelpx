@@ -1,5 +1,4 @@
 package com.developersstack.medehelpx.controller;
-import com.developersstack.medehelpx.db.DBConnection;
 import com.developersstack.medehelpx.db.Database;
 import com.developersstack.medehelpx.entity.User;
 import com.developersstack.medehelpx.enums.AccountType;
@@ -16,9 +15,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Optional;
 
