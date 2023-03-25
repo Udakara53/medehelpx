@@ -11,9 +11,7 @@ public class IdGenerator {
                   "root",
                   "1234"
           );
-          String sql ="SELECT user_id FROM user ORDER BY user_id DESC LIMIT 1";
-          PreparedStatement pstm = connection.prepareStatement(sql);
-          ResultSet rst = pstm.executeQuery();
+          ResultSet rst = CrudUtil.executeQuery("SELECT user_id FROM user ORDER BY user_id DESC LIMIT 1");
           if (rst.next()){
               return rst.getInt("user_id")+1;
           }
