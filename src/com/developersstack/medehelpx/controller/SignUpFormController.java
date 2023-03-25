@@ -1,7 +1,9 @@
 package com.developersstack.medehelpx.controller;
+import com.developersstack.medehelpx.db.DBConnection;
 import com.developersstack.medehelpx.db.Database;
 import com.developersstack.medehelpx.entity.User;
 import com.developersstack.medehelpx.enums.AccountType;
+import com.developersstack.medehelpx.util.IdGenerator;
 import com.developersstack.medehelpx.util.PasswordConfig;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
@@ -33,15 +35,9 @@ public class SignUpFormController {
                 rBtnDoctor.isSelected()?AccountType.DOCTOR:AccountType.PATIENT);
 
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/medehelpx",
-                    "root",
-                    "1234"
-            );
             String sql = "INSERT INTO user VALUES (?,?,?,?,?,?)";
-            PreparedStatement pstm = connection.prepareStatement(sql);
-            pstm.setInt(1,1001);
+            PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql);
+            pstm.setInt(1,new IdGenerator().generateId());
             pstm.setString(2, user.getFirstName());
             pstm.setString(3, user.getLastName());
             pstm.setString(4, user.getEmail());

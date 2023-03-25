@@ -1,9 +1,10 @@
 package com.developersstack.medehelpx.controller;
-
+import com.developersstack.medehelpx.db.DBConnection;
 import com.developersstack.medehelpx.db.Database;
 import com.developersstack.medehelpx.entity.User;
 import com.developersstack.medehelpx.enums.AccountType;
 import com.developersstack.medehelpx.util.Cookie;
+import com.developersstack.medehelpx.util.PasswordConfig;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
@@ -14,8 +15,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.sql.*;
 
 public class LoginFormController {
     public JFXTextField txtEmail;
@@ -27,32 +28,28 @@ public class LoginFormController {
     public void signInOnAction(ActionEvent actionEvent) throws IOException {
         String email =txtEmail.getText().toLowerCase().trim();
         String password = txtPassword.getText().trim();
-        AccountType accountType = AccountType.PATIENT;
-        if (rBtnDoctor.isSelected()){
-            accountType =AccountType.DOCTOR;
-
-        }
-        for (User dto:Database.userTable
-             ) {
-            if (dto.getEmail().equals(email)){
-                if (dto.getPassword().equals(password)){
-                    if (dto.getAccountType().equals(accountType)) {
-                        new Alert(Alert.AlertType.CONFIRMATION,"LoginSuccess!").show();
-
-                        Cookie.selectedUser = dto;
+        AccountType accountType = rBtnDoctor.isSelected()?AccountType.DOCTOR: AccountType.PATIENT;
+        try{
+            String sql = "SELECT*FROM user WHERE email=? AND account_type=?";
+            PreparedStatement pstm = DBConnection.getInstance().getConnection().prepareStatement(sql);
+            pstm.setString(1, email);
+            pstm.setString(2, accountType.name());
+            ResultSet rst = pstm.executeQuery();
+            if (rst.next()){
+                if (new PasswordConfig().decrypt(password, rst.getString("password"))){
+                    if (accountType.equals(AccountType.DOCTOR)){
                         setUi("DoctorDashboardForm");
-
-                        return;
                     }else{
-                        new Alert(Alert.AlertType.WARNING,String.format("We can't find Your %s Account ",accountType)).show();
-                        return;
+                        setUi("PatientDashboardForm");
                     }
-                }else{
-                    new Alert(Alert.AlertType.WARNING,"Password is incorrect").show();
-                    return;
                 }
+            }else{
+                new Alert(Alert.AlertType.WARNING,
+                        String.format("We can't find an email %s ",email)).show();
             }
-        }new Alert(Alert.AlertType.WARNING,String.format("we can't find %s address ",email)).show();
+        }catch (SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
 
     }
 

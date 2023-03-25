@@ -44,7 +44,7 @@ public class Database {
             ));
             patientTable.add(new Patient(
                     "951", "Dilan", "Eranga", new SimpleDateFormat("yyyy-MM-dd").parse("2018-10-12"),
-                    GenderType.MALE, "abilipitiya","dil@gmail.com"
+                    GenderType.MALE, "ambilipitiya","dil@gmail.com"
             ));
             patientTable.add(new Patient(
                     "90", "Dusantha", "sangeeth", new Date(),
