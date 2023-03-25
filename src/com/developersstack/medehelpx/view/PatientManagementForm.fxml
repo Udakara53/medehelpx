@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="789.0" prefWidth="1189.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.developersstack.medehelpx.controller.PatientManagementFormController">
+   <children>
+      <Label layoutX="80.0" layoutY="21.0" text="Patient Management" textFill="#cc821f">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="16.0" style="-fx-background-color: #1d0e68;" text="&lt;-" textFill="#e1e0e8">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Separator layoutX="14.0" layoutY="67.0" prefHeight="9.0" prefWidth="1146.0" />
+      <TextField layoutX="37.0" layoutY="95.0" prefHeight="31.0" prefWidth="254.0" promptText="Search here">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TableView layoutX="14.0" layoutY="150.0" prefHeight="558.0" prefWidth="1164.0">
+        <columns>
+          <TableColumn prefWidth="168.0" text="NIC" />
+          <TableColumn prefWidth="209.0" text="First Name" />
+            <TableColumn prefWidth="223.0" text="Last Name" />
+            <TableColumn prefWidth="153.0" text="DOB" />
+            <TableColumn prefWidth="112.0" text="Gender" />
+            <TableColumn prefWidth="184.0" text="Address" />
+            <TableColumn prefWidth="114.0" text="Age" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

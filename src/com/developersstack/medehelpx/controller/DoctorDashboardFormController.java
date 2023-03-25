@@ -37,7 +37,11 @@ public class DoctorDashboardFormController {
         Optional<Doctor> selectedDoctor =
                 Database.doctorTable.stream().filter(g -> g.getEmail().equals("t@gmail.com")).findFirst();
         if (!selectedDoctor.isPresent()){
-            setUi("DoctorRegistrationForm");
+            //setUi("DoctorRegistrationForm");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/DoctorRegistrationForm.fxml"))));
+            stage.centerOnScreen();
+            stage.show();
         }
     }
 
@@ -54,9 +58,6 @@ public class DoctorDashboardFormController {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
-
-
-
 
     public void checkUser() throws IOException {
         if (null==Cookie.selectedUser){
@@ -75,5 +76,9 @@ public class DoctorDashboardFormController {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/"+location+".fxml"))));
         stage.centerOnScreen();
         stage.show();
+    }
+
+    public void navigateToPatientManagementPage(ActionEvent actionEvent) throws IOException {
+        setUi("PatientManagementForm");
     }
 }
